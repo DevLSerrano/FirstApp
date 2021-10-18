@@ -8,9 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert = false
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        HStack {
+            NavigationView{
+            Form {   Section {
+                Text("Hello, world!")
+                    .foregroundColor(Color.gray)
+                    .padding()
+                    .frame(width: 350.0)
+                Text("Vamos testar algumas funções.")
+                    .foregroundColor(Color.gray)
+                    .padding()
+                    .frame(width: 350.0)
+                
+            }
+                
+                if #available(iOS 15.0, *) {
+                    Button("Mostrar Alerta") {
+                        showingAlert = true
+                    }
+                    .alert("Mensagem de Alerta.", isPresented: $showingAlert) {
+                        Button("OK", role: .cancel) { }
+                        
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+            .navigationTitle("Olá, Leonardo")
+            }
+          
+        }
     }
 }
 
@@ -19,3 +48,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+ 
+
